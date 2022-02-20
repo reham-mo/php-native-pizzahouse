@@ -3,7 +3,7 @@
 session_start();
 
 $server = 'localhost';
-$dbname = 'x';
+$dbname = 'pizzahouse1';
 $dbUser = 'root';
 $dbPassword = '';
 
