@@ -2,6 +2,8 @@
 
 require './helpers/dbConnection.php';
 require './helpers/functions.php';
+require '../dist/helpers/checkLogin.php';
+
 
 require '../dist/layouts/header.php';
 require '../dist/layouts/navbar.php';

@@ -3,10 +3,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checkLogin.php';
+require '../helpers/checkAdmin.php';
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-$sql = "select * from crust_type";
+$sql = "SELECT pizza.id as pizzaId, crust.id as crustId from pizza join crust on pizza.id = crust.id;";
 $op = mysqli_query($con, $sql);
 
 
@@ -21,7 +23,7 @@ require '../layouts/sidenav.php';
 
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4"> Crust Type Dashboard</h1>
+        <h1 class="mt-4"> Pizza Crust Dashboard</h1>
         <ol class="breadcrumb mb-4">
             <!-- print session that carries error array in html -->
             <?php displayMessage('Dashboard/Display Crust Type'); ?>
@@ -30,7 +32,7 @@ require '../layouts/sidenav.php';
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Crust Type :
+                Pizza Crust :
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -38,18 +40,16 @@ require '../layouts/sidenav.php';
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Type</th>
-                                <th>Price</th>
-                                <th>Action</th>
+                                <th>Pizza ID</th>
+                                <th>Crust ID</th>
+                              
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Type</th>
-                                <th>Price</th>
-                                <th>Action</th>
-
+                                <th>Pizza ID</th>
+                                <th>Crust ID</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -61,13 +61,13 @@ require '../layouts/sidenav.php';
                             ?>
                                 <tr>
                                     <th><?php echo $data['id'] ?></th>
-                                    <th><?php echo $data['type'] ?></th>
-                                    <th><?php echo $data['price'] ?></th>
+                                    <th><?php echo $data['pizzaId'] ?></th>
+                                    <th><?php echo $data['crustId'] ?></th>
 
-                                    <td>
+                                    <!-- <td>
                                         <a href='delete.php?id=<?php echo $data['id']  ?>' class='btn btn-danger m-r-1em'>Delete</a>
                                         <a href='edit.php?id=<?php echo $data['id']  ?>' class='btn btn-primary m-r-1em'>Edit</a>
-                                    </td>
+                                    </td> -->
 
                                 </tr>
                             <?php } ?>

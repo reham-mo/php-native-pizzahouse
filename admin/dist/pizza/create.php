@@ -3,6 +3,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checkLogin.php';
+require '../helpers/checkAdmin.php';
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -53,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['Message'] = ["Error In Uploading File Try Again"];
         } else {
 
-            $sql = "insert into pizza (name,image,description,price,type_id,size_id) values ('$name','$image','$description',$price, 1,1)";
+            $sql = "insert into pizza (name,image,description,price) values ('$name','$image','$description',$price)";
 
             $op  =  mysqli_query($con, $sql);
 

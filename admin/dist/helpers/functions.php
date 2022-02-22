@@ -85,7 +85,7 @@ function uploadFile($input){
 
 
 //////////////////////////////////////////////////////////////////////////////////////////// display session message
-function displayMessage($text)
+function displayMessage($text = null)
 {
 
     if (isset($_SESSION['Message'])) {

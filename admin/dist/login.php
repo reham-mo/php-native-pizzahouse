@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             header("location: index.php");
         } else {
-            echo 'Error In Username || Password Try Again .... ';
+            $_SESSION['Message'] = ['Error In Username || Password Try Again'];
         }
     }
 }
@@ -86,6 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
                                     <h3 class="text-center font-weight-light my-4">Login</h3>
+                                    <?php    
+                                            displayMessage();
+                                     ?>
                                 </div>
                                 <div class="card-body">
                                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">

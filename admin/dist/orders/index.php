@@ -3,11 +3,13 @@
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
 require '../helpers/checkLogin.php';
-require '../helpers/checkAdmin.php';
 
 
 # Fetch Data ... 
-$sql = "select users.*, role.title from users join role on users.role_id = role.id";
+$sql = "select orders.*, users.id as userId, pizza_crust.id as pcId, extras.id as extrasId 
+          from orders join users on orders.user_id = users.id 
+                      join pizza_crust on orders.pizza_crust_id = pizza_crust.id 
+                      join extras on orders.extra_id = extras.id;";
 $op  = mysqli_query($con, $sql);
 
 
@@ -18,6 +20,10 @@ require '../layouts/sidenav.php';
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 ?>
+<!-- select orders.*, users.id as userId, pizza-crust.id as pcId, extras.id as extrasId 
+from orders join users on orders.user_id = users.id
+            join pizza-crust on orders.pizza_crust_id = pizza-crust.id
+            join extras on orders.extra_id = extras.id; -->
 
 
 
@@ -35,7 +41,7 @@ require '../layouts/sidenav.php';
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Users :
+                Orders :
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -43,21 +49,23 @@ require '../layouts/sidenav.php';
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Action</th>
+                                <th>User_id</th>
+                                <th>Pizza crust_id</th>
+                                <th>Extras_id</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                                <th>is_confirmed</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Action</th>
+                                <th>User_id</th>
+                                <th>Pizza crust_id</th>
+                                <th>Extras_id</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                                <th>is_confirmed</th>
                             </tr>
                         </tfoot>
 
@@ -70,16 +78,18 @@ require '../layouts/sidenav.php';
                             ?>
                                 <tr>
                                     <td><?php echo $data['id']; ?></td>
-                                    <td><?php echo $data['name']; ?></td>
-                                    <td><?php echo $data['username']; ?></td>
-                                    <td><?php echo $data['email']; ?></td>
-                                    <td><?php echo $data['title']; ?></td>
+                                    <td><?php echo $data['userId']; ?></td>
+                                    <td><?php echo $data['pcId']; ?></td>
+                                    <td><?php echo $data['extrasId']; ?></td>
+                                    <td><?php echo $data['price']; ?></td>
+                                    <td><?php echo $data['date']; ?></td>
+                                    <td><?php echo $data['is_confirmed']; ?></td>
 
-                                    <td>
+                                    <!-- <td>
                                         <a href='delete.php?id=<?php echo $data['id'];  ?>' class='btn btn-danger m-r-1em'>Delete</a>
                                         <a href='edit.php?id=<?php echo $data['id'];  ?>' class='btn btn-primary m-r-1em'>Edit</a>
 
-                                    </td>
+                                    </td> -->
 
                                 </tr>
                             <?php } ?>

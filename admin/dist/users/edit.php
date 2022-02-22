@@ -2,6 +2,8 @@
 
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checkLogin.php';
+require '../helpers/checkAdmin.php';
 
 // Fetch User data .... 
 $id = $_GET['id'];

@@ -3,9 +3,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checkLogin.php';
+require '../helpers/checkAdmin.php';
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-$sql = "select pizza.*, crust_type.type, crust_type.price as typePrice, crust_size.size, crust_size.price as sizePrice from pizza join crust_type on pizza.type_id = crust_type.id join crust_size on pizza.size_id = crust_size.id";
+$sql = "select * from pizza";
 $op = mysqli_query($con, $sql);
 
 
@@ -40,8 +42,6 @@ require '../layouts/sidenav.php';
                                 <th>image</th>
                                 <th>name</th>
                                 <th>description</th>
-                                <th>type</th>
-                                <th>size</th>
                                 <th>price</th>
                                 <th>Action</th>
                             </tr>
@@ -52,8 +52,6 @@ require '../layouts/sidenav.php';
                                 <th>image</th>
                                 <th>name</th>
                                 <th>description</th>
-                                <th>type</th>
-                                <th>size</th>
                                 <th>price</th>
                                 <th>Action</th>
                             </tr>
@@ -70,9 +68,7 @@ require '../layouts/sidenav.php';
                                     <th> <img src="images/<?php echo $data['image'];  ?>" class="img-fluid"  alt="img" height='50' width='50' > </th>
                                     <th><?php echo $data['name'] ?></th>
                                     <th><?php echo $data['description'] ?></th>
-                                    <th><?php echo $data['type'] ?></th>
-                                    <th><?php echo $data['size'] ?></th>
-                                    <th><?php echo  $data['price'] + $data['typePrice'] + $data['sizePrice'] ?></th>
+                                    <th><?php echo  $data['price']?></th>
 
                                     <td>
                                         <a href='delete.php?id=<?php echo $data['id']  ?>' class='btn btn-danger m-r-1em'>Delete</a>

@@ -1,28 +1,33 @@
 <?php
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checkLogin.php';
+require '../helpers/checkAdmin.php';
+
 ///////////////////////////////////////////////////////////////////////////////////////////
-
-$id = $_GET['id'];
-
-$sql = "select * from crust_type where id = $id";
-$op = mysqli_query($con, $sql);
-$typeData = mysqli_fetch_assoc($op);
-
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $type = clean($_POST['type']);
+    $size = clean($_POST['size']);
     $price = $_POST['price'];
 
     // array to store the errors
     $err = [];
 
+  
     if (!validate($type, 1)) {
         $err['type'] = " type required!";
     }
+
+
+    if (!validate($size, 1)) {
+        $err['size'] = " size required!";
+    }
+
 
     if (!validate($price, 1)) {
         $err['price'] = " price required!";
@@ -30,26 +35,28 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $err['price'] = " price must be integer!";
     }
 
+
     if (count($err) > 0) {
 
         //store error array in session to print it in html!
         $_SESSION['Message'] = $err;
+
     } else {
 
-        $sql = "update crust_type set type = '$type', price = $price where id = $id";
+
+        $sql = "insert into crust (type,size, price) values ('$type','$size', $price)";
         $op = mysqli_query($con, $sql);
 
-        if($op){
-            $message = ["Raw Updated"];
-            $_SESSION['Message'] = $message;
-    
-            header("Location: index.php");
-            exit();
-    
-        }else{
+        if ($op) {
+
+            $message = ["Raw Inserted"];
+  
+        } else {
+
             $message = ["Error Try Again"];
-            $_SESSION['Message'] = $message;
         }
+
+        $_SESSION['Message'] = $message;
     }
 }
 
@@ -60,29 +67,34 @@ require '../layouts/navbar.php';
 require '../layouts/sidenav.php';
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-
 ?>
 
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Crust Type Dashboard</h1>
+        <h1 class="mt-4"> Crust Dashboard</h1>
         <ol class="breadcrumb mb-4">
 
             <!-- print session that carries error array in html -->
-            <?php displayMessage('Dashboard/Edit Crust Type'); ?>
+            <?php displayMessage('Dashboard/Add Crust'); ?>
 
         </ol>
         <div class="container">
 
-            <form action="edit.php?id=<?php echo  $typeData['id']; ?>" method="post">
+            <form action="<?php echo  htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
 
                 <div class="form-group">
                     <label for="exampleInputName">Type</label>
-                    <input type="text" class="form-control" id="exampleInputName" name="type" value="<?php echo $typeData['type']?>" placeholder="Enter Crust Type">
+                    <input type="text" class="form-control" id="exampleInputName" name="type" placeholder="Enter Crust Type">
                 </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName">Size</label>
+                    <input type="text" class="form-control" id="exampleInputName" name="size" placeholder="Enter Crust Size">
+                </div>
+
                 <div class="form-group">
                     <label for="exampleInputName">Price</label>
-                    <input type="text" class="form-control" id="exampleInputName" name="price" value="<?php echo $typeData['price']?>" placeholder="Enter price">
+                    <input type="text" class="form-control" id="exampleInputName" name="price" placeholder="Enter Price">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Save</button>

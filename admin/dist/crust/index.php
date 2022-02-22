@@ -3,10 +3,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checkLogin.php';
+require '../helpers/checkAdmin.php';
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-$sql = "select * from crust_size";
+$sql = "select * from crust";
 $op = mysqli_query($con, $sql);
 
 
@@ -20,10 +22,10 @@ require '../layouts/sidenav.php';
 
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4"> Crust Size Dashboard</h1>
+        <h1 class="mt-4"> Crust Dashboard</h1>
         <ol class="breadcrumb mb-4">
             <!-- print session that carries error array in html -->
-            <?php displayMessage('Dashboard/Display Crust Size'); ?>
+            <?php displayMessage('Dashboard/Display Crust'); ?>
         </ol>
 
 
@@ -32,7 +34,7 @@ require '../layouts/sidenav.php';
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Crust Size :
+                Crust :
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -40,6 +42,7 @@ require '../layouts/sidenav.php';
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Type</th>
                                 <th>Size</th>
                                 <th>Price</th>
                                 <th>Action</th>
@@ -48,6 +51,7 @@ require '../layouts/sidenav.php';
                         <tfoot>
                             <tr>
                                 <th>ID</th>
+                                <th>Type</th>
                                 <th>Size</th>
                                 <th>Price</th>
                                 <th>Action</th>
@@ -63,6 +67,7 @@ require '../layouts/sidenav.php';
                             ?>
                                 <tr>
                                     <th><?php echo $data['id'] ?></th>
+                                    <th><?php echo $data['type'] ?></th>
                                     <th><?php echo $data['size'] ?></th>
                                     <th><?php echo $data['price'] ?></th>
                                     <td>

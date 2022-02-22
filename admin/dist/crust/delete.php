@@ -4,7 +4,7 @@ require '../helpers/dbConnection.php';
 
 $id = $_GET['id'];
 
-$sql = "delete from crust_type where id = $id"; 
+$sql = "delete from crust where id = $id"; 
 $op = mysqli_query($con,$sql);
 
 if($op){

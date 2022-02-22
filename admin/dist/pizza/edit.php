@@ -3,6 +3,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checkLogin.php';
+require '../helpers/checkAdmin.php';
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -70,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $image = $pizzaData['image'];
         }
 
-        $sql = "update pizza set name = '$name' , image = '$image', description = '$description', price = $price, type_id = 2, size_id = 2 where id = $id";
+        $sql = "update pizza set name = '$name' , image = '$image', description = '$description', price = $price where id = $id";
 
         $op  =  mysqli_query($con, $sql);
 
