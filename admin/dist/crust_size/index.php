@@ -23,19 +23,7 @@ require '../layouts/sidenav.php';
         <h1 class="mt-4"> Crust Size Dashboard</h1>
         <ol class="breadcrumb mb-4">
             <!-- print session that carries error array in html -->
-            <?php
-
-            if (isset($_SESSION['Message'])) {
-                foreach ($_SESSION['Message'] as $val) {
-                    echo ' <li> ' . $val . '</li>';
-                }
-                unset($_SESSION['Message']);
-            } else {
-                echo ' <li class="breadcrumb-item active">Dashboard</li>';
-            }
-
-
-            ?>
+            <?php displayMessage('Dashboard/Display Crust Size'); ?>
         </ol>
 
 

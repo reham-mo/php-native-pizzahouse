@@ -8,8 +8,9 @@ require '../helpers/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $name = clean($_POST['name']);
-    $price = $_POST['price'];
+    $name        = clean($_POST['name']);
+    $description = clean($_POST['description']);
+    $price       = $_POST['price'];
 
     // array to store the errors
     $err = [];
@@ -17,6 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
      //validate name
     if (!validate($name, 1)) {
         $err['name'] = " name required!";
+    }
+
+    //validate description
+    if (!validate($description, 1)) {
+    $err['description'] = " description required!";
     }
 
      //validate price
@@ -47,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['Message'] = ["Error In Uploading File Try Again"];
         } else {
 
-            $sql = "insert into extras (name,image,price) values ('$name','$image',$price)";
+            $sql = "insert into pizza (name,image,description,price,type_id,size_id) values ('$name','$image','$description',$price, 1,1)";
 
             $op  =  mysqli_query($con, $sql);
 
@@ -80,11 +86,11 @@ require '../layouts/sidenav.php';
 
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4"> Extras Dashboard</h1>
+        <h1 class="mt-4"> Pizza Dashboard</h1>
         <ol class="breadcrumb mb-4">
 
             <!-- print session that carries error array in html -->
-            <?php displayMessage('Dashboard/Add Extras'); ?>
+            <?php displayMessage('Dashboard/Add Pizza'); ?>
 
         </ol>
         <div class="container">
@@ -93,8 +99,14 @@ require '../layouts/sidenav.php';
 
                 <div class="form-group">
                     <label for="exampleInputName">Name</label>
-                    <input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Enter Extras">
+                    <input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Enter Pizza Name">
                 </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName">Description</label>
+                    <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+
 
                 <div class="form-group">
                     <label for="exampleInputName">Price</label>

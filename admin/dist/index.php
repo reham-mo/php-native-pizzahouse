@@ -1,5 +1,8 @@
 <?php
 
+require './helpers/dbConnection.php';
+require './helpers/functions.php';
+
 require '../dist/layouts/header.php';
 require '../dist/layouts/navbar.php';
 require '../dist/layouts/sidenav.php';

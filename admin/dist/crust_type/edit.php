@@ -69,19 +69,7 @@ require '../layouts/sidenav.php';
         <ol class="breadcrumb mb-4">
 
             <!-- print session that carries error array in html -->
-            <?php
-
-            if (isset($_SESSION['Message'])) {
-                foreach ($_SESSION['Message'] as $val) {
-                    echo ' <li> ' . $val . '</li>';
-                }
-                unset($_SESSION['Message']);
-            } else {
-                echo ' <li class="breadcrumb-item active">Dashboard</li>';
-            }
-
-
-            ?>
+            <?php displayMessage('Dashboard/Edit Crust Type'); ?>
 
         </ol>
         <div class="container">
