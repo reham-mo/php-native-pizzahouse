@@ -1,5 +1,11 @@
 <?php
 
+require "./admin/dist/helpers/dbConnection.php";
+
+$sql = "select * from pizza";
+$op = mysqli_query($con, $sql);
+
+
 require 'layouts/header.php';
 require 'layouts/navbar.php';
 require 'layouts/carousel.php';
@@ -130,7 +136,11 @@ require 'layouts/carousel.php';
 			</div>
 		</div>
 	</div>
+
+
 	<div class="container-wrap">
+
+
 		<div class="row no-gutters d-flex">
 			<div class="col-lg-4 d-flex ftco-animate">
 				<div class="services-wrap d-flex">
@@ -142,6 +152,9 @@ require 'layouts/carousel.php';
 					</div>
 				</div>
 			</div>
+
+
+
 			<div class="col-lg-4 d-flex ftco-animate">
 				<div class="services-wrap d-flex">
 					<a href="#" class="img" style="background-image: url(images/pizza-2.jpg);"></a>
@@ -152,6 +165,9 @@ require 'layouts/carousel.php';
 					</div>
 				</div>
 			</div>
+
+
+
 			<div class="col-lg-4 d-flex ftco-animate">
 				<div class="services-wrap d-flex">
 					<a href="#" class="img" style="background-image: url(images/pizza-3.jpg);"></a>
@@ -163,6 +179,7 @@ require 'layouts/carousel.php';
 				</div>
 			</div>
 
+
 			<div class="col-lg-4 d-flex ftco-animate">
 				<div class="services-wrap d-flex">
 					<a href="#" class="img order-lg-last" style="background-image: url(images/pizza-4.jpg);"></a>
@@ -173,6 +190,9 @@ require 'layouts/carousel.php';
 					</div>
 				</div>
 			</div>
+
+
+
 			<div class="col-lg-4 d-flex ftco-animate">
 				<div class="services-wrap d-flex">
 					<a href="#" class="img order-lg-last" style="background-image: url(images/pizza-5.jpg);"></a>
@@ -183,6 +203,9 @@ require 'layouts/carousel.php';
 					</div>
 				</div>
 			</div>
+
+
+
 			<div class="col-lg-4 d-flex ftco-animate">
 				<div class="services-wrap d-flex">
 					<a href="#" class="img order-lg-last" style="background-image: url(images/pizza-6.jpg);"></a>
@@ -193,6 +216,11 @@ require 'layouts/carousel.php';
 					</div>
 				</div>
 			</div>
+
+
+
+
+
 		</div>
 	</div>
 
