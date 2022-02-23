@@ -29,10 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     # Validate Role_id  ... 
     if (!validate($confirm, 1)) {
         $errors['confirm'] = " confirm Required";
-    } elseif (!validate($confirme, 2)) {
-        $errors['confirm'] = " confirm Invalid";
     }
-
  
 
     # Check Errors 
@@ -40,8 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION['Message'] = $errors;
     } else {
         # logic .... 
-
-            $sql = "update orders set is_confirmed = '$confirm'  where id = $id";
+            $sql = "update orders set is_confirmed = ". $confirm ."  where id =". $id;
             $op  = mysqli_query($con, $sql);
 
             if ($op) {
@@ -112,11 +108,7 @@ require '../layouts/sidenav.php';
                         <tbody>
 
 
-                        <option value="<?php echo $Role_data['id']; ?>" 
-                        <?php if ($data['id'] == $Role_data['id']){ echo 'selected';
-                                                                            } ?>><?php echo $Role_data['title']; ?></option>
-
-
+           
 
 
                                 <?php
