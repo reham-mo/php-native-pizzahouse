@@ -30,9 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
      //validate price
     if (!validate($price, 1)) {
         $err['price'] = " price required!";
-    } elseif (!validate($price, 2)) {
-        $err['price'] = " price must be number!";
+    }elseif (!validate($price, 2)) {
+        $err['price'] = " price must be number!"; 
     }
+    
+    // elseif (!validate($price, 2)) {
+    //     $err['price'] = " price must be number!";
+    // }
 
 
       //validate image

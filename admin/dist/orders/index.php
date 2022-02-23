@@ -29,9 +29,9 @@ from orders join users on orders.user_id = users.id
 
 <main>
     <div class="container-fluid">
-    <h1 class="mt-4">Users Dashboard</h1>
+    <h1 class="mt-4">Orders Dashboard</h1>
         <ol class="breadcrumb mb-4">
-            <?php displayMessage('Dashboard/Display Users'); ?>
+            <?php displayMessage('Dashboard/Display Orders'); ?>
         </ol>
 
 
@@ -55,6 +55,7 @@ from orders join users on orders.user_id = users.id
                                 <th>Price</th>
                                 <th>Date</th>
                                 <th>is_confirmed</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -66,6 +67,7 @@ from orders join users on orders.user_id = users.id
                                 <th>Price</th>
                                 <th>Date</th>
                                 <th>is_confirmed</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
 
@@ -83,13 +85,14 @@ from orders join users on orders.user_id = users.id
                                     <td><?php echo $data['extrasId']; ?></td>
                                     <td><?php echo $data['price']; ?></td>
                                     <td><?php echo $data['date']; ?></td>
-                                    <td><?php echo $data['is_confirmed']; ?></td>
+                                    <td><?php echo $data['is_confirmed']; ?>
+                                          
+                                    </td>
 
-                                    <!-- <td>
-                                        <a href='delete.php?id=<?php echo $data['id'];  ?>' class='btn btn-danger m-r-1em'>Delete</a>
+                                    <td>
                                         <a href='edit.php?id=<?php echo $data['id'];  ?>' class='btn btn-primary m-r-1em'>Edit</a>
 
-                                    </td> -->
+                                    </td>
 
                                 </tr>
                             <?php } ?>

@@ -1,80 +1,94 @@
-
 <?php
 
-require 'layouts/header.php';
-require 'layouts/navbar.php';
+require './layouts/header.php';
+require './layouts/thenavbar.php';
+require './admin/dist/helpers/dbConnection.php';
+require './admin/dist/helpers/functions.php';
+
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+    $password = Clean($_POST['password'], 1);
+    $username = Clean($_POST['username']);
+
+    $errors = [];
+
+
+    if (!validate($username, 1)) {
+        $errors['username'] = " username required";
+    }
+
+    # validate password 
+    if (!validate($password, 1)) {
+        $errors['password'] = " password required";
+    } elseif (!validate($password, 5)) {
+        $errors['password'] = " Password Length Must be >= 6 Chars";
+    }
+
+    if (count($errors) > 0) {
+        $_SESSION['Message'] = $errors;
+    } else {
+
+
+        $password = md5($password);
+
+        $sql = "select * from users where username = '$username' and password = '$password'";
+
+        $result  = mysqli_query($con, $sql);
+
+
+
+        if (mysqli_num_rows($result) == 1) {
+
+            $data = mysqli_fetch_assoc($result);
+
+            $_SESSION['User'] = $data;
+
+            header("location: index.php");
+        } else {
+            $_SESSION['Message'] = ['Error In Email || Password Try Again  '];
+        }
+    }
+}
+
 
 
 ?>
 
-    <section class="home-slider owl-carousel img" style="background-image: url(images/bg_1.jpg);">
+<div class="container mt-5 pt-5">
 
-      <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
-      	<div class="overlay"></div>
-        <div class="container">
-          <div class="row slider-text justify-content-center align-items-center">
+    <div class="d-flex-inline p-2 justify-content-center">
+        <div class="mb-2 text-center">
+            <h2>Login</h2>
+        </div>
+        <div >
+                <?php
+                displayMessage();
+                ?>
+            </div>
+        <form action="<?php echo  htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
 
-            <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">Contact Us</h1>
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Contact</span></p>
+            <div class="form-group">
+                <label for="exampleInputName" class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputName" name="username" placeholder="Username">
+                </div>
             </div>
 
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="ftco-section contact-section">
-      <div class="container mt-5">
-        <div class="row block-9">
-					<div class="col-md-4 contact-info ftco-animate">
-						<div class="row">
-							<div class="col-md-12 mb-4">
-	              <h2 class="h4">Contact Information</h2>
-	            </div>
-	            <div class="col-md-12 mb-3">
-	              <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-	            </div>
-	            <div class="col-md-12 mb-3">
-	              <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-	            </div>
-	            <div class="col-md-12 mb-3">
-	              <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-	            </div>
-	            <div class="col-md-12 mb-3">
-	              <p><span>Website:</span> <a href="#">yoursite.com</a></p>
-	            </div>
-						</div>
-					</div>
-					<div class="col-md-1"></div>
-          <div class="col-md-6 ftco-animate">
-            <form action="#" class="contact-form">
-            	<div class="row">
-            		<div class="col-md-6">
-	                <div class="form-group">
-	                  <input type="text" class="form-control" placeholder="Your Name">
-	                </div>
+            <div class="form-group">
+                <label for="exampleInputPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
                 </div>
-                <div class="col-md-6">
-	                <div class="form-group">
-	                  <input type="text" class="form-control" placeholder="Your Email">
-	                </div>
-	                </div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
-              </div>
-              <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+            </div>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a class="btn btn-primary" href="register.php" role="button">Register</a>
+            </div>
+        </form>
+    </div>
 
-    <div id="map"></div>
-    <?php require './layouts/footer.php';?>
+
+
+</div>

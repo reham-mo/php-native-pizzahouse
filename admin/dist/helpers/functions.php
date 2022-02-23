@@ -53,7 +53,17 @@ function validate($input, $flag)
             if(strlen($input)<6){
                 $status = false;
             }    
-            break;      
+            break;    
+        case 6 :
+            if (!preg_match('/^\\d+(\\.\\d{1,2})?$/D', $input)){
+                $status = false;
+            }
+            break; 
+        case 7: 
+            if(!preg_match('/^01[0-2,5][0-9]{8}$/',$input)){
+                $status = false;
+                }
+            break;           
     }
     return $status;
 }
@@ -94,7 +104,7 @@ function displayMessage($text = null)
         }
         unset($_SESSION['Message']);
     } else {
-        echo ' <li class="breadcrumb-item active">' . $text . '</li>';
+        echo ' <li>' . $text . '</li>';
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////// display session message

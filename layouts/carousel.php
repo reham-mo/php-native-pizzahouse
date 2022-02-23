@@ -10,7 +10,7 @@
 						<h1 class="mb-4">Italian Cuizine</h1>
 						<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
 							necessary regelialia.</p>
-						<p> <a href="menu.php"
+						<p> <a href="#menu"
 								class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
 					</div>
 					<div class="col-md-6 ftco-animate">
@@ -31,7 +31,7 @@
 						<h1 class="mb-4">Italian Pizza</h1>
 						<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
 							necessary regelialia.</p>
-						<p><a href="menu.php"
+						<p><a href="#menu"
 								class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
 					</div>
 					<div class="col-md-6 ftco-animate">
@@ -52,7 +52,7 @@
 						<h1 class="mb-4">We cooked your desired Pizza Recipe</h1>
 						<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
 							necessary regelialia.</p>
-						<p><a href="menu.php"
+						<p><a href="#menu"
 								class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
 					</div>
 
