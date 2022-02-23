@@ -1,21 +1,20 @@
 <?php
 
 require "./admin/dist/helpers/dbConnection.php";
-
-// require '../helpers/functions.php';
+require './admin/dist/helpers/functions.php';
 
 $sql = "select * from pizza";
 $op = mysqli_query($con, $sql);
 
 $sql = "select * from extras";
-$extraOp = mysqli_query($con, $sql); 
+$extraOp = mysqli_query($con, $sql);
 
 require './layouts/header.php';
 require './layouts/thenavbar.php';
 require './layouts/carousel.php';
 
 ?>
-
+ 
 <section class="ftco-intro">
 	<div class="container-wrap">
 		<div class="wrap d-md-flex">
@@ -118,7 +117,7 @@ require './layouts/carousel.php';
 					<div class="icon d-flex justify-content-center align-items-center mb-5"><span class="flaticon-pizza-1"></span></div>
 					<div class="media-body">
 						<h3 class="heading">Original Recipes</h3>
-						<p  id="menu">We provide a variety of freshly baked pizzas. With fine ingredients such as sweet onion,
+						<p id="menu">We provide a variety of freshly baked pizzas. With fine ingredients such as sweet onion,
 							Italian style hot peppers and rich black olives,who can resist taking a bite?</p>
 					</div>
 				</div>
@@ -130,7 +129,7 @@ require './layouts/carousel.php';
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 
-<section class="ftco-section" >
+<section class="ftco-section">
 	<div class="container">
 		<div class="row justify-content-center mb-5 pb-3">
 			<div class="col-md-7 heading-section ftco-animate text-center">
@@ -142,16 +141,15 @@ require './layouts/carousel.php';
 
 	<div class="container-wrap">
 		<div class="row no-gutters d-flex">
-
 			<?php while ($result = mysqli_fetch_assoc($op)) { ?>
-
 				<div class="col-lg-4 d-flex ftco-animate">
 					<div class="services-wrap d-flex">
 						<img class="img" style="height: 240px;" src="./admin/dist/pizza/images/<?php echo $result['image'] ?>">
 						<div class="text p-4">
 							<h3><?php echo $result['name']; ?></h3>
-							<p><?php echo $result['description']; ?></p>
-							<p class="price"><span>$<?php echo $result['price']; ?></span> <a href="#" class="ml-2 btn btn-white btn-outline-white">Order</a></p>
+							<p><?php echo substr($result['description'],0,89); ?></p>
+							<p class="price"><span>$<?php echo $result['price']; ?>
+						</span> <a href="pizza.php?id=<?php echo $result['id']; ?>" class="ml-2 btn btn-white btn-outline-white">Order</a></p>
 						</div>
 					</div>
 				</div>
@@ -159,7 +157,7 @@ require './layouts/carousel.php';
 			<?php } ?>
 		</div>
 	</div>
-
+	
 
 
 	<div class="container">
@@ -173,42 +171,22 @@ require './layouts/carousel.php';
 		<div class="row">
 			<div class="col-md-12">
 
-			  <?php while ($data = mysqli_fetch_assoc($extraOp)) { ?>
+				<?php while ($data = mysqli_fetch_assoc($extraOp)) { ?>
 
-				<div class="pricing-entry d-flex ftco-animate">
-					<!-- <div class="img" style="background-image: url(images/pizza-1.jpg);"></div> -->
-					<img class="img" src="./admin/dist/extras/images/<?php echo $data['image'] ?>">
+					<div class="pricing-entry d-flex ftco-animate">
+						<img class="img" src="./admin/dist/extras/images/<?php echo $data['image'] ?>">
 
-					<div class="desc pl-3">
-						<div class="d-flex text align-items-center">
-							<h3><span><?php echo $data['name'] ?></span></h3>
-							<span class="price">$<?php echo $data['price'] ?></span>
+						<div class="desc pl-3">
+							<div class="d-flex text align-items-center">
+								<h3><span><?php echo $data['name'] ?></span></h3>
+								<span class="price">$<?php echo $data['price'] ?></span>
+							</div>
+
 						</div>
-						
 					</div>
-				</div>
-			
+
 				<?php } ?>
 			</div>
-
-
-
-			<!-- <div class="col-md-6">
-
-				<div class="pricing-entry d-flex ftco-animate">
-					<div class="img" style="background-image: url(images/pizza-5.jpg);"></div>
-					<div class="desc pl-3">
-						<div class="d-flex text align-items-center">
-							<h3><span>Hawaiian Special</span></h3>
-							<span class="price">$49.91</span>
-						</div>
-						<div class="d-block">
-							<p>A small river named Duden flows by their place and supplies</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			 -->
 		</div>
 	</div>
 </section>

@@ -15,7 +15,7 @@
 
                                 //    4    admin    , 1 writer ..... 
                                 if($_SESSION['User']['role_id'] == 1){
-                                $modules = ["pizza", "crust", "pizza-crust", "extras", "users", "orders", "role"];
+                                $modules = ["pizza", "crust", "extras", "users", "orders", "role"];
                                 }else{
                                 $modules = ["orders"];
                                 }
@@ -31,7 +31,7 @@
                                 <div class="collapse" id="collapseLayouts<?php echo $key; ?>" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                     <nav class="sb-sidenav-menu-nested nav">
 
-                                        <?php if ($module != "pizza-crust" && $module != "orders") { ?>
+                                        <?php if ($module != "orders") { ?>
                                             <a class="nav-link" href="<?php echo url($module . '/create.php') ?>">+ Create</a>
 
                                         <?php } ?>

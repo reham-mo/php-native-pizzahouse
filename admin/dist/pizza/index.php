@@ -67,7 +67,7 @@ require '../layouts/sidenav.php';
                                     <th><?php echo $data['id'] ?></th>
                                     <th> <img src="images/<?php echo $data['image'];  ?>" class="img-fluid"  alt="img" height='50' width='50' > </th>
                                     <th><?php echo $data['name'] ?></th>
-                                    <th><?php echo $data['description'] ?></th>
+                                    <th><?php echo substr($data['description'],0,89) . "..."; ?></th>
                                     <th><?php echo  $data['price']?></th>
 
                                     <td>

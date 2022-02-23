@@ -6,10 +6,9 @@ require '../helpers/checkLogin.php';
 
 
 # Fetch Data ... 
-$sql = "select orders.*, users.id as userId, pizza_crust.id as pcId, extras.id as extrasId 
-          from orders join users on orders.user_id = users.id 
-                      join pizza_crust on orders.pizza_crust_id = pizza_crust.id 
-                      join extras on orders.extra_id = extras.id;";
+$sql = "select orders.*, users.id as userId, pizza.id as pcId, extras.id as extrasId 
+       from orders join users on orders.user_id = users.id join pizza on orders.pizza_id = pizza.id 
+       join extras on orders.extra_id = extras.id";
 $op  = mysqli_query($con, $sql);
 
 
@@ -34,10 +33,6 @@ from orders join users on orders.user_id = users.id
             <?php displayMessage('Dashboard/Display Orders'); ?>
         </ol>
 
-
-
-
-
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -50,9 +45,9 @@ from orders join users on orders.user_id = users.id
                             <tr>
                                 <th>ID</th>
                                 <th>User_id</th>
-                                <th>Pizza crust_id</th>
+                                <th>Pizza_id</th>
                                 <th>Extras_id</th>
-                                <th>Price</th>
+                                <th>Total Price</th>
                                 <th>Date</th>
                                 <th>is_confirmed</th>
                                 <th>Action</th>
@@ -62,9 +57,9 @@ from orders join users on orders.user_id = users.id
                             <tr>
                                 <th>ID</th>
                                 <th>User_id</th>
-                                <th>Pizza crust_id</th>
+                                <th>Pizza_id</th>
                                 <th>Extras_id</th>
-                                <th>Price</th>
+                                <th>Total Price</th>
                                 <th>Date</th>
                                 <th>is_confirmed</th>
                                 <th>Action</th>
@@ -84,7 +79,7 @@ from orders join users on orders.user_id = users.id
                                     <td><?php echo $data['pcId']; ?></td>
                                     <td><?php echo $data['extrasId']; ?></td>
                                     <td><?php echo $data['price']; ?></td>
-                                    <td><?php echo $data['date']; ?></td>
+                                    <td><?php echo date('d/m/Y',$data['date']); ?></td>
                                     <td><?php echo $data['is_confirmed']; ?>
                                           
                                     </td>
