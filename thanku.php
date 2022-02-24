@@ -33,7 +33,7 @@ $sql = "select orders.id, orders.price as totalprice, orders.date, users.id as u
         orders.crust_id = crust.id join extras on orders.extra_id = extras.id where orders.id = $orderId";
  $op = mysqli_query($con,$sql);
  
- $orderData = mysqli_fetch_assoc($op);
+//  $orderData = mysqli_fetch_assoc($op);
 
 ?>
 
@@ -41,11 +41,13 @@ $sql = "select orders.id, orders.price as totalprice, orders.date, users.id as u
 
     <div class="d-flex-inline p-2 justify-content-center">
         <div class="mb-2 text-center">
-            <h2>Thank you for ordering from PizzaHouse,  <?php echo $orderData['username']; ?></h2>
+            <h2>Thank you for ordering from PizzaHouse</h2>
             <h3>your order details: </h3>
         </div>
 
         <div class="table-responsive">
+
+    
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -59,6 +61,7 @@ $sql = "select orders.id, orders.price as totalprice, orders.date, users.id as u
                             </tr>
                         </thead>
                         <tbody>
+                        <?php while($orderData = mysqli_fetch_assoc($op)){ ?>
                                 <tr>
                                     <td><?php echo $orderData['pizzaname']; ?></td>
                                     <td><?php echo $orderData['crusttype']; ?></td>
@@ -68,8 +71,10 @@ $sql = "select orders.id, orders.price as totalprice, orders.date, users.id as u
                                     <td><?php echo '$'.$orderData['totalprice']; ?></td>
 
                                 </tr>
+                                <?php } ?>
                         </tbody>
                     </table>
+           
                     <div class="mb-2 text-center">
                     <a href="index.php" class="ml-2 btn btn-white btn-outline-white">go back</a>
                     </div>
