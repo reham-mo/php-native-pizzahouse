@@ -38,11 +38,13 @@ $sql = "insert into orders (`user_id`, `pizza_id`, `crust_id`, `extra_id`, `pric
 
         if ($op) {
 
-        
+            $sql = "select * from orders where user_id = {$_SESSION['User']['id']}";
+            $orderOp = mysqli_query($con,$sql);
+            $data = mysqli_fetch_assoc($orderOp); 
+
+            $_SESSION['orderData'] = $data;
             header("location: thanku.php");
-            $message = ["Thank you for ordering from PizzaHouse"];
-            $_SESSION['Message'] =  $message;
-  
+    
         } else {
 
             $message = ["Error Try Again"];
