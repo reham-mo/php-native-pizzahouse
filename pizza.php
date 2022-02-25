@@ -7,7 +7,6 @@ require './layouts/thenavbar.php';
 
 $id = $_GET['id'];
 
-/// fetch pizza table
 $sql = "select * from pizza where id = $id";
 $op = mysqli_query($con, $sql);
 

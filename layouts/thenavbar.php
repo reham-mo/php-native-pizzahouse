@@ -9,7 +9,6 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-					<!-- <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li> -->
 
 				        <?php if(!isset($_SESSION['User'])){ ?>
 						<li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>

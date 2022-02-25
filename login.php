@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $errors['username'] = " username required";
     }
 
-    # validate password 
     if (!validate($password, 1)) {
         $errors['password'] = " password required";
     } elseif (!validate($password, 5)) {

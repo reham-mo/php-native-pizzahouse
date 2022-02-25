@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $size = clean($_POST['size']);
     $price = $_POST['price'];
 
-    // array to store the errors
     $err = [];
 
   

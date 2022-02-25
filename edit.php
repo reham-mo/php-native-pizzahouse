@@ -5,8 +5,6 @@ require './checkLogin.php';
 require './admin/dist/helpers/functions.php';
 require './layouts/header.php';
 
-
-// $id = $_GET['id'];
 $id = $_SESSION['User']['id'];
 
 $sql = "select users.*, customerdetails.address, customerdetails.phone, customerdetails.user_id 
@@ -17,8 +15,6 @@ $UserData = mysqli_fetch_assoc($op);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    // CODE ..... 
-
     $name          = clean($_POST['name']);
     $username      = clean($_POST['username']);
     $email         = Clean($_POST['email']);
@@ -26,10 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $phone         = $_POST['phone'];
 
   
-
     $errors = [];
 
-    # validate name 
     if (!validate($name, 1)) {
         $errors['name'] = " name required";
     }
@@ -38,19 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $errors['username'] = " username required";
     } 
 
-    # Validate Email .... 
     if (!validate($email, 1)) {
         $errors['email'] = " email required";
     } elseif (!validate($email, 4)) {
         $errors['email'] = " email invalid";
     }
 
-    # validate Address 
     if (!validate($address, 1)) {
         $errors['address'] = " address required";
     }
 
-    # validate url 
     if (!validate($phone, 1)) {
         $errors['phone'] = " phone required";
     } elseif(!validate($phone, 7)) {
@@ -58,8 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
 
-
-    # Check Errors 
  if (count($errors) > 0) {
         $_SESSION['Message'] = $errors;
     } else {
@@ -105,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 
 
-<!-- require './layouts/thenavbar.php'; -->
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="index.php"><span class="flaticon-pizza-1 mr-1"></span>Pizza<br><small>House</small></a>
@@ -115,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-                <!-- <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li> -->
 
                 <?php if (isset($_SESSION['User']['id'])) { ?>
                     <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
