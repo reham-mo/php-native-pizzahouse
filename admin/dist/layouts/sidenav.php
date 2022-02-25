@@ -15,7 +15,7 @@
 
                                 //    4    admin    , 1 writer ..... 
                                 if($_SESSION['User']['role_id'] == 1){
-                                $modules = ["pizza", "crust", "extras", "users", "orders", "role"];
+                                $modules = ["details","pizza", "crust", "extras", "users", "orders", "role"];
                                 }else{
                                 $modules = ["orders"];
                                 }

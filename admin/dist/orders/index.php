@@ -6,9 +6,9 @@ require '../helpers/checkLogin.php';
 
 
 # Fetch Data ... 
-$sql = "select orders.*, users.id as userId, pizza.id as pcId, extras.id as extrasId 
-       from orders join users on orders.user_id = users.id join pizza on orders.pizza_id = pizza.id 
-       join extras on orders.extra_id = extras.id";
+$sql = "select orders.*, users.name as userName, pizza.name as pizzaName, extras.name as extraName 
+from orders join users on orders.user_id = users.id join pizza on orders.pizza_id = pizza.id 
+join extras on orders.extra_id = extras.id";
 $op  = mysqli_query($con, $sql);
 
 
@@ -44,9 +44,9 @@ from orders join users on orders.user_id = users.id
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>User_id</th>
-                                <th>Pizza_id</th>
-                                <th>Extras_id</th>
+                                <th>User name</th>
+                                <th>Pizza</th>
+                                <th>Extra</th>
                                 <th>Total Price</th>
                                 <th>Date</th>
                                 <th>is_confirmed</th>
@@ -56,9 +56,9 @@ from orders join users on orders.user_id = users.id
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>User_id</th>
-                                <th>Pizza_id</th>
-                                <th>Extras_id</th>
+                                <th>User name</th>
+                                <th>Pizza</th>
+                                <th>Extra</th>
                                 <th>Total Price</th>
                                 <th>Date</th>
                                 <th>is_confirmed</th>
@@ -75,9 +75,9 @@ from orders join users on orders.user_id = users.id
                             ?>
                                 <tr>
                                     <td><?php echo $data['id']; ?></td>
-                                    <td><?php echo $data['userId']; ?></td>
-                                    <td><?php echo $data['pcId']; ?></td>
-                                    <td><?php echo $data['extrasId']; ?></td>
+                                    <td><?php echo $data['userName']; ?></td>
+                                    <td><?php echo $data['pizzaName']; ?></td>
+                                    <td><?php echo $data['extraName']; ?></td>
                                     <td><?php echo $data['price']; ?></td>
                                     <td><?php echo date('d/m/Y',$data['date']); ?></td>
                                     <td><?php echo $data['is_confirmed']; ?>

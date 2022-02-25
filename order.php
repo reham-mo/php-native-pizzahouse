@@ -43,7 +43,11 @@ $sql = "insert into orders (`user_id`, `pizza_id`, `crust_id`, `extra_id`, `pric
             $data = mysqli_fetch_assoc($orderOp); 
 
             $_SESSION['orderData'] = $data;
-            header("location: thanku.php");
+
+            $message = ["Thank you for ordering from PizzaHouse"];
+            $_SESSION['Message'] =  $message;
+
+            header("location: profile.php");
     
         } else {
 

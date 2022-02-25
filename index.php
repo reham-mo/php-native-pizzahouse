@@ -9,6 +9,9 @@ $op = mysqli_query($con, $sql);
 $sql = "select * from extras";
 $extraOp = mysqli_query($con, $sql);
 
+$sql = "select * from details";
+$detailsOp = mysqli_query($con, $sql);
+
 require './layouts/header.php';
 require './layouts/thenavbar.php';
 require './layouts/carousel.php';
@@ -20,27 +23,31 @@ require './layouts/carousel.php';
 		<div class="wrap d-md-flex">
 			<div class="info">
 				<div class="row no-gutters">
+					<?php while($detais = mysqli_fetch_assoc($detailsOp)){?>
 					<div class="col-md-4 d-flex ftco-animate">
 						<div class="icon"><span class="icon-phone"></span></div>
 						<div class="text">
-							<h3>000 (123) 456 7890</h3>
-							<p>A small river named Duden flows</p>
+							<h3><?php echo $detais['callUs_title'] ?></h3>
+							<p><?php echo $detais['callUs_details'] ?></p>
 						</div>
 					</div>
+
 					<div class="col-md-4 d-flex ftco-animate">
 						<div class="icon"><span class="icon-my_location"></span></div>
 						<div class="text">
-							<h3>198 West 21th Street</h3>
-							<p>Suite 721 New York NY 10016</p>
+							<h3><?php echo $detais['location_title'] ?></h3>
+							<p><?php echo $detais['location_details'] ?></p>
 						</div>
 					</div>
+
 					<div class="col-md-4 d-flex ftco-animate">
 						<div class="icon"><span class="icon-clock-o"></span></div>
 						<div class="text">
-							<h3>Open Monday-Friday</h3>
-							<p>8:00am - 9:00pm</p>
+							<h3><?php echo $detais['open'] ?></h3>
+							<p><?php echo $detais['time'] ?></p>
 						</div>
 					</div>
+					<?php } ?>
 				</div>
 			</div>
 			<div class="social d-md-flex pl-md-5 p-4 align-items-center">
@@ -61,7 +68,7 @@ require './layouts/carousel.php';
 	<div class="one-half img" style="background-image: url('images/about.jpg');"></div>
 	<div class=" one-half ftco-animate">
 		<div class="heading-section ftco-animate ">
-			<h2 class="mb-4">Welcome to <span class="flaticon-pizza">Pizza</span> A Restaurant</h2>
+			<h2 class="mb-4">Welcome to <span class="flaticon-pizza">Pizza House</span></h2>
 		</div>
 		<div>
 			<p>In 1984, PizzaHouse's opened its doors with one goal in mind: Better Pizza. We knew that with better

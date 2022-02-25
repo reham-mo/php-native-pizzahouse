@@ -100,11 +100,11 @@ function displayMessage($text = null)
 
     if (isset($_SESSION['Message'])) {
         foreach ($_SESSION['Message'] as $val) {
-            echo ' <li> ' . $val . '</li>';
+            echo $val;
         }
         unset($_SESSION['Message']);
     } else {
-        echo ' <li>' . $text . '</li>';
+        echo  $text ;
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////// display session message

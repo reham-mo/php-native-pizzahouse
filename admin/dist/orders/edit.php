@@ -128,7 +128,7 @@ require '../layouts/sidenav.php';
                                             <select class="form-control"  name="confirm">
 
                                                     <option value="1"> confirmed </option>
-                                                    <option value="0"> rejected </option>
+                                                    <option value="pending"> pending </option>
                                             </select>        
                                         </td>
                                             <td><button type="submit" class="btn btn-primary">Save</button> </td>    

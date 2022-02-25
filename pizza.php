@@ -53,21 +53,21 @@ $extrasOp = mysqli_query($con, $sql);
 
 	<section class="ftco-about d-md-flex">
 
-		<div class="one-half img" style="padding-right: 50px; padding-left:220px"> <img src="./admin/dist/pizza/images/<?php echo $pizzaData['image'] ?>" style="height: 500px; width:500px;" alt=""></div>
+		<div class="one-half img" style="padding-right: 50px; padding-left:220px"> <img src="./admin/dist/pizza/images/<?= $pizzaData['image'] ?>" style="height: 500px; width:500px;" alt=""></div>
 		<div class="one-half ftco-animate" style="padding-top: 90px; padding-left:20px">
 			<div class="heading-section ftco-animate ">
-				<h1 class="mb-4"><span class="flaticon-pizza"> </span><?php echo $pizzaData['name']; ?> </h1>
+				<h1 class="mb-4"><span class="flaticon-pizza"> </span><?= $pizzaData['name']; ?> </h1>
 			</div>
 			<div class="pb-2">
-				<p> </span><?php echo $pizzaData['description']; ?> </p>
-				<h2 class="mb-4"> <span> Price : $ <?php echo $pizzaData['price']; ?></h2>
+				<p> </span><?= $pizzaData['description']; ?> </p>
+				<h2 class="mb-4"> <span> Price : $ <?= $pizzaData['price']; ?></h2>
 			</div>
 
 
 			<select id="crustID" onchange="getcrustPrice()" class="form-control mb-4" aria-label="Default select example">
 				<?php while ($crustaData = mysqli_fetch_assoc($crustOp)) { ?>
 
-					<option style="background-color: black;" value="<?php echo $crustaData['id']; ?>"> <?php echo $crustaData['type']; ?> - <?php echo $crustaData['size']; ?> : <?php echo '$' . $crustaData['price']; ?> </option>
+					<option style="background-color: black;" value="<?= $crustaData['id']; ?>"> <?= $crustaData['type']; ?> - <?= $crustaData['size']; ?> : <?= '$' . $crustaData['price']; ?> </option>
 
 				<?php } ?>
 			</select>
@@ -75,7 +75,7 @@ $extrasOp = mysqli_query($con, $sql);
 			<select id="extraID" onchange="getextraPrice()" class="form-control mb-4" aria-label="Default select example">
 				<?php while ($extraData = mysqli_fetch_assoc($extrasOp)) { ?>
 
-					<option style="background-color: black;" value="<?php echo $extraData['id']; ?>"> <?php echo $extraData['name']; ?> : <?php echo '$' . $extraData['price']; ?> </option>
+					<option style="background-color: black;" value="<?= $extraData['id']; ?>"> <?= $extraData['name']; ?> : <?= '$' . $extraData['price']; ?> </option>
 
 				<?php } ?>
 			</select>
